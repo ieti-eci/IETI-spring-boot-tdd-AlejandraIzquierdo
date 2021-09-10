@@ -22,52 +22,46 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
-@TestInstance( TestInstance.Lifecycle.PER_CLASS )
-class MongoWeatherServiceTest
-{
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+class MongoWeatherServiceTest {
     WeatherService weatherService;
 
     @Mock
     WeatherReportRepository repository;
 
     @BeforeAll()
-    public void setup()
-    {
-        weatherService = new MongoWeatherService( repository );
+    public void setup() {
+        weatherService = new MongoWeatherService(repository);
     }
 
     @Test
-    void createWeatherReportCallsSaveOnRepository()
-    {
+    void createWeatherReportCallsSaveOnRepository() {
         double lat = 4.7110;
         double lng = 74.0721;
-        GeoLocation location = new GeoLocation( lat, lng );
-        WeatherReportDto weatherReportDto = new WeatherReportDto( location, 35f, 22f, "tester", new Date() );
-        weatherService.report( weatherReportDto );
-        verify( repository ).save( any( WeatherReport.class ) );
+        GeoLocation location = new GeoLocation(lat, lng);
+        WeatherReportDto weatherReportDto = new WeatherReportDto(location, 35f, 22f, "tester", new Date());
+        weatherService.report(weatherReportDto);
+        verify(repository).save(any(WeatherReport.class));
     }
 
     @Test
-    void weatherReportIdFoundTest()
-    {
+    void weatherReportIdFoundTest() {
         String weatherReportId = "awae-asd45-1dsad";
         double lat = 4.7110;
         double lng = 74.0721;
-        GeoLocation location = new GeoLocation( lat, lng );
-        WeatherReport weatherReport = new WeatherReport( location, 35f, 22f, "tester", new Date() );
-        when( repository.findById( weatherReportId ) ).thenReturn( Optional.of( weatherReport ) );
-        WeatherReport foundWeatherReport = weatherService.findById( weatherReportId );
-        Assertions.assertEquals( weatherReport, foundWeatherReport );
+        GeoLocation location = new GeoLocation(lat, lng);
+        WeatherReport weatherReport = new WeatherReport(location, 35f, 22f, "tester", new Date());
+        when(repository.findById(weatherReportId)).thenReturn(Optional.of(weatherReport));
+        WeatherReport foundWeatherReport = weatherService.findById(weatherReportId);
+        Assertions.assertEquals(weatherReport, foundWeatherReport);
     }
 
     @Test
-    void weatherReportIdNotFoundTest()
-    {
+    void weatherReportIdNotFoundTest() {
         String weatherReportId = "dsawe1fasdasdoooq123";
-        when( repository.findById( weatherReportId ) ).thenReturn( Optional.empty() );
-        Assertions.assertThrows( WeatherReportNotFoundException.class, () -> {
-            weatherService.findById( weatherReportId );
-        } );
+        when(repository.findById(weatherReportId)).thenReturn(Optional.empty());
+        Assertions.assertThrows(WeatherReportNotFoundException.class, () -> {
+            weatherService.findById(weatherReportId);
+        });
     }
-
 }
