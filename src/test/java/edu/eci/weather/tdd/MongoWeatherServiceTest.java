@@ -1,12 +1,12 @@
-package org.adaschool.tdd;
+package edu.eci.weather.tdd;
 
-import org.adaschool.tdd.controller.weather.dto.WeatherReportDto;
-import org.adaschool.tdd.exception.WeatherReportNotFoundException;
-import org.adaschool.tdd.repository.WeatherReportRepository;
-import org.adaschool.tdd.repository.document.GeoLocation;
-import org.adaschool.tdd.repository.document.WeatherReport;
-import org.adaschool.tdd.service.MongoWeatherService;
-import org.adaschool.tdd.service.WeatherService;
+import edu.eci.weather.tdd.repository.WeatherReportRepository;
+import edu.eci.weather.tdd.repository.document.GeoLocation;
+import edu.eci.weather.tdd.repository.document.WeatherReport;
+import edu.eci.weather.tdd.controller.weather.dto.WeatherReportDto;
+import edu.eci.weather.tdd.exception.WeatherReportNotFoundException;
+import edu.eci.weather.tdd.service.MongoWeatherService;
+import edu.eci.weather.tdd.service.WeatherService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

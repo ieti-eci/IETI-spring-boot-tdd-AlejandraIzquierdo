@@ -1,4 +1,4 @@
-package org.adaschool.tdd.repository.document;
+package edu.eci.weather.tdd.repository.document;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;

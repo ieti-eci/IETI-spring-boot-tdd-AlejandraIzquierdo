@@ -1,9 +1,9 @@
-package org.adaschool.tdd.service;
+package edu.eci.weather.tdd.service;
 
-import org.adaschool.tdd.controller.weather.dto.WeatherReportDto;
-import org.adaschool.tdd.repository.WeatherReportRepository;
-import org.adaschool.tdd.repository.document.GeoLocation;
-import org.adaschool.tdd.repository.document.WeatherReport;
+import edu.eci.weather.tdd.repository.WeatherReportRepository;
+import edu.eci.weather.tdd.repository.document.GeoLocation;
+import edu.eci.weather.tdd.repository.document.WeatherReport;
+import edu.eci.weather.tdd.controller.weather.dto.WeatherReportDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +22,7 @@ public class MongoWeatherService
     }
 
     @Override
-    public WeatherReport report( WeatherReportDto weatherReportDto )
+    public WeatherReport report(WeatherReportDto weatherReportDto )
     {
         return null;
     }
@@ -34,7 +34,7 @@ public class MongoWeatherService
     }
 
     @Override
-    public List<WeatherReport> findNearLocation( GeoLocation geoLocation, float distanceRangeInMeters )
+    public List<WeatherReport> findNearLocation(GeoLocation geoLocation, float distanceRangeInMeters )
     {
         return null;
     }

@@ -1,9 +1,9 @@
-package org.adaschool.tdd.controller.weather;
+package edu.eci.weather.tdd.controller.weather;
 
-import org.adaschool.tdd.controller.weather.dto.NearByWeatherReportsQueryDto;
-import org.adaschool.tdd.controller.weather.dto.WeatherReportDto;
-import org.adaschool.tdd.repository.document.WeatherReport;
-import org.adaschool.tdd.service.WeatherService;
+import edu.eci.weather.tdd.repository.document.WeatherReport;
+import edu.eci.weather.tdd.controller.weather.dto.NearByWeatherReportsQueryDto;
+import edu.eci.weather.tdd.controller.weather.dto.WeatherReportDto;
+import edu.eci.weather.tdd.service.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,7 +26,7 @@ public class WeatherReportController
     }
 
     @PostMapping
-    public WeatherReport create( @RequestBody WeatherReportDto weatherReportDto )
+    public WeatherReport create(@RequestBody WeatherReportDto weatherReportDto )
     {
         return weatherService.report( weatherReportDto );
     }

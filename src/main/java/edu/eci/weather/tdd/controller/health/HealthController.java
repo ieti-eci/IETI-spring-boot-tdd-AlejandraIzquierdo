@@ -1,4 +1,4 @@
-package org.adaschool.tdd.controller.health;
+package edu.eci.weather.tdd.controller.health;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
