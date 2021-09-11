@@ -1,5 +1,6 @@
 package edu.eci.weather.tdd.repository.document;
 
+import edu.eci.weather.tdd.controller.weather.dto.WeatherReportDto;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -31,6 +32,14 @@ public class WeatherReport
         this.humidity = humidity;
         this.reporter = reporter;
         this.created = created;
+    }
+
+    public WeatherReport(WeatherReportDto weatherReportDto){
+        geoLocation = weatherReportDto.getGeoLocation();
+        temperature = weatherReportDto.getTemperature();
+        humidity = weatherReportDto.getHumidity();
+        reporter = weatherReportDto.getReporter();
+        created = weatherReportDto.getCreated();
     }
 
     public GeoLocation getGeoLocation()
