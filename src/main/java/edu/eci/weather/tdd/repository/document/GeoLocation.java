@@ -1,4 +1,4 @@
-package org.adaschool.tdd.repository.document;
+package edu.eci.weather.tdd.repository.document;
 
 public class GeoLocation
 {

@@ -1,4 +1,4 @@
-package org.adaschool.tdd;
+package edu.eci.weather.tdd;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

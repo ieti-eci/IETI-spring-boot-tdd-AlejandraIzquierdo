@@ -1,6 +1,6 @@
-package org.adaschool.tdd.controller.weather.dto;
+package edu.eci.weather.tdd.controller.weather.dto;
 
-import org.adaschool.tdd.repository.document.GeoLocation;
+import edu.eci.weather.tdd.repository.document.GeoLocation;
 
 public class NearByWeatherReportsQueryDto
 {
