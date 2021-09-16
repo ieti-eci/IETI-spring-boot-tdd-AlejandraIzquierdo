@@ -85,25 +85,32 @@ class MongoWeatherServiceTest {
         List<WeatherReport> foundWeatherReports = weatherService.findWeatherReportsByName(weatherReportReporter);
         Assertions.assertEquals(Collections.emptyList(), foundWeatherReports);
     }
-    //Probar
+
     @Test
     void weatherReportLocationsBetweenRangesTest(){
-        float distanceRangeInMeters = 23;
+        float distanceRangeInMeters = 2;
         double lat = 4.7110;
         double lng = 74.0721;
         GeoLocation location = new GeoLocation(lat, lng);
         double lat1 = 20.7110;
         double lng1 = 10.0721;
         GeoLocation location1 = new GeoLocation(lat1, lng1);
-        double lat2 = -8.7110;
-        double lng2 = 5.0721;
-        GeoLocation location2 = new GeoLocation(lat2, lng2);
         WeatherReport weatherReport = new WeatherReport(location, 35f, 22f, "tester", new Date());
         WeatherReport weatherReport_two = new WeatherReport(location1, 35f, 22f, "tester", new Date());
-        WeatherReport weatherReport_three = new WeatherReport(location2, 35f, 22f, "tester", new Date());
-        List<WeatherReport> weatherReports = new ArrayList<WeatherReport>(){ {add(weatherReport);add(weatherReport_two);add(weatherReport_three);}};
-        when(repository.findNearLocation(lat-distanceRangeInMeters, lat+distanceRangeInMeters,lng-distanceRangeInMeters,lng+distanceRangeInMeters)).thenReturn(weatherReports);
+        List<WeatherReport> weatherReportsL = new ArrayList<WeatherReport>(){ {add(weatherReport);add(weatherReport_two);}};
+        when(repository.findNearLocation(lat-distanceRangeInMeters, lat+distanceRangeInMeters,lng-distanceRangeInMeters,lng+distanceRangeInMeters)).thenReturn(weatherReportsL);
         List<WeatherReport> nearestWeatherReports = weatherService.findNearLocation(location,distanceRangeInMeters);
-        Assertions.assertEquals(weatherReports, nearestWeatherReports);
+        Assertions.assertEquals(weatherReportsL, nearestWeatherReports);
+    }
+
+    @Test
+    void weatherReportLocationsNotBetweenRangesTest(){
+        float distanceRangeInMeters = 2;
+        double lat = 4.7110;
+        double lng = 74.0721;
+        GeoLocation location = new GeoLocation(lat, lng);
+        when(repository.findNearLocation(lat-distanceRangeInMeters, lat+distanceRangeInMeters,lng-distanceRangeInMeters,lng+distanceRangeInMeters)).thenReturn(Collections.emptyList());
+        List<WeatherReport> nearestWeatherReports = weatherService.findNearLocation(location,distanceRangeInMeters);
+        Assertions.assertEquals(Collections.emptyList(), nearestWeatherReports);
     }
 }

@@ -45,7 +45,8 @@ public class MongoWeatherService
         Double latLT = geoLocation.getLat()+distanceRangeInMeters;
         Double lngGT = geoLocation.getLng()-distanceRangeInMeters;
         Double lngLT = geoLocation.getLng()+distanceRangeInMeters;
-        return repository.findNearLocation(latGT,latLT,lngGT,lngLT);
+        List<WeatherReport> nearestLocations = repository.findNearLocation(latGT,latLT,lngGT,lngLT);
+        return nearestLocations;
     }
 
     @Override
