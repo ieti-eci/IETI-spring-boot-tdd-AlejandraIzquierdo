@@ -1,11 +1,9 @@
 package edu.eci.weather.tdd.repository;
 
-import edu.eci.weather.tdd.repository.document.GeoLocation;
 import edu.eci.weather.tdd.repository.document.WeatherReport;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
-import java.awt.geom.QuadCurve2D;
 import java.util.List;
 
 public interface WeatherReportRepository
