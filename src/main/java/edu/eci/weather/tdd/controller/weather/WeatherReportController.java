@@ -48,6 +48,4 @@ public class WeatherReportController
     {
         return weatherService.findWeatherReportsByName( name );
     }
-
-
 }

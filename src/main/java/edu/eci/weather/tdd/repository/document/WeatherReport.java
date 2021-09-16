@@ -9,8 +9,7 @@ import java.util.Date;
 import java.util.Objects;
 
 @Document
-public class WeatherReport
-{
+public class WeatherReport {
     @Id
     String id;
 
@@ -20,13 +19,12 @@ public class WeatherReport
 
     double humidity;
 
-    @Indexed( unique = true )
+    @Indexed(unique = true)
     String reporter;
 
     Date created;
 
-    public WeatherReport( GeoLocation geoLocation, double temperature, double humidity, String reporter, Date created )
-    {
+    public WeatherReport(GeoLocation geoLocation, double temperature, double humidity, String reporter, Date created) {
         this.geoLocation = geoLocation;
         this.temperature = temperature;
         this.humidity = humidity;
@@ -34,7 +32,7 @@ public class WeatherReport
         this.created = created;
     }
 
-    public WeatherReport(WeatherReportDto weatherReportDto){
+    public WeatherReport(WeatherReportDto weatherReportDto) {
         geoLocation = weatherReportDto.getGeoLocation();
         temperature = weatherReportDto.getTemperature();
         humidity = weatherReportDto.getHumidity();
@@ -42,51 +40,46 @@ public class WeatherReport
         created = weatherReportDto.getCreated();
     }
 
-    public GeoLocation getGeoLocation()
-    {
+    public GeoLocation getGeoLocation() {
         return geoLocation;
     }
 
-    public double getTemperature()
-    {
+    public double getTemperature() {
         return temperature;
     }
 
-    public double getHumidity()
-    {
+    public double getHumidity() {
         return humidity;
     }
 
-    public String getReporter()
-    {
+    public String getReporter() {
         return reporter;
     }
 
-    public Date getCreated()
-    {
+    public Date getCreated() {
         return created;
     }
 
     @Override
-    public boolean equals( Object o )
-    {
-        if ( this == o )
-        {
+    public boolean equals(Object o) {
+        if (this == o) {
             return true;
         }
-        if ( o == null || getClass() != o.getClass() )
-        {
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
         WeatherReport that = (WeatherReport) o;
-        return Double.compare( that.temperature, temperature ) == 0 && Double.compare( that.humidity, humidity ) == 0
-            && Objects.equals( id, that.id ) && Objects.equals( geoLocation, that.geoLocation ) && Objects.equals(
-            reporter, that.reporter ) && Objects.equals( created, that.created );
+        return Double.compare(that.temperature, temperature) == 0 && Double.compare(that.humidity, humidity) == 0
+                && Objects.equals(id, that.id) && Objects.equals(geoLocation, that.geoLocation) && Objects.equals(
+                reporter, that.reporter) && Objects.equals(created, that.created);
+    }
+
+    public boolean equalContent(WeatherReport weatherReportCompare) {
+        return weatherReportCompare.getReporter().equals(this.getReporter()) && weatherReportCompare.getCreated().equals(this.getCreated()) && weatherReportCompare.getHumidity() == this.getHumidity() && weatherReportCompare.getTemperature() == this.getTemperature() && weatherReportCompare.getGeoLocation().getLat() == (this.getGeoLocation().getLat())&& weatherReportCompare.getGeoLocation().getLng() == this.getGeoLocation().getLng();
     }
 
     @Override
-    public int hashCode()
-    {
-        return Objects.hash( id, geoLocation, temperature, humidity, reporter, created );
+    public int hashCode() {
+        return Objects.hash(id, geoLocation, temperature, humidity, reporter, created);
     }
 }
