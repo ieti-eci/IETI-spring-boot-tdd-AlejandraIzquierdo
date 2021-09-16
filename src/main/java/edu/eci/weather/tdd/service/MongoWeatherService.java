@@ -32,20 +32,24 @@ public class MongoWeatherService
     public WeatherReport findById(String id) {
         Optional<WeatherReport> o_weatherReport = repository.findById(id);
 
-        try{
+        try {
             return o_weatherReport.get();
-        } catch (NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             throw new WeatherReportNotFoundException();
         }
     }
 
     @Override
     public List<WeatherReport> findNearLocation(GeoLocation geoLocation, float distanceRangeInMeters) {
-        return null;
+        Double latGT = geoLocation.getLat()-distanceRangeInMeters;
+        Double latLT = geoLocation.getLat()+distanceRangeInMeters;
+        Double lngGT = geoLocation.getLng()-distanceRangeInMeters;
+        Double lngLT = geoLocation.getLng()+distanceRangeInMeters;
+        return repository.findNearLocation(latGT,latLT,lngGT,lngLT);
     }
 
     @Override
     public List<WeatherReport> findWeatherReportsByName(String reporter) {
-        return null;
+        return repository.findWeatherReportsByReporter(reporter);
     }
 }
